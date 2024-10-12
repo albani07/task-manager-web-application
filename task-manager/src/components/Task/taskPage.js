@@ -25,14 +25,12 @@ const TaskPage = () => {
   };
 
   const handleDeleteTask = async (taskId) => {
-   
     try {
-      await taskService.deleteTask(taskId); 
-      setTasks(tasks.filter((task) => task.id !== taskId)); 
+      await taskService.deleteTask(taskId);
+      setTasks(tasks.filter((task) => task.id !== taskId));
     } catch (error) {
       console.error("Error deleting task:", error);
     }
- 
   };
 
   return (
@@ -57,8 +55,13 @@ const TaskPage = () => {
               <td style={{ width: "20%" }}>{task.description}</td>
               <td style={{ width: "15%" }}>{TaskStatusEnum[task.status]}</td>
               <td style={{ width: "15%" }}>{task.assignedUser}</td>{" "}
-              {/* Displaying assigned user */}
-              <td style={{ width: "20%" }}>
+              <td
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
                 <button onClick={() => handleUpdateTask(task)}>Edit</button>
                 <button onClick={() => handleDeleteTask(task.id)}>
                   Delete
